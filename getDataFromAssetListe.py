@@ -18,32 +18,32 @@ def read_asset_list(file):
     It contains a list of all meterIds that are prosumer households 
     in the BloGPV-Community
     """
-def generate_producer_keys(file):
+def generate_prosumer_keys(file):
     # getting Data out of csv file
     with open(file, 'r') as csv_file:
         csvReader = csv.reader(csv_file)
 
        #storing meterIds in a List
-        producerList = []
+        prosumerList = []
         for i in csvReader:
-            producerList.append(i[0])
-        return producerList
+            prosumerList.append(i[0])
+        return prosumerList
 
-#keys_prosumer = generate_producer_keys('prosumer_IDs.csv')
+#keys_prosumer = generate_prosumer_keys('prosumer_IDs.csv')
 
 
-""" this function checks which producer Ids are also in AssetListe.json.
-    This has to be made as there are more producers on the API than in
+""" this function checks which prosumer Ids are also in AssetListe.json.
+    This has to be made as there are more prosumers on the API than in
     AssetListe.json
     
     It returns a list of all prosumderIds that are in AssetListe.json
     
     In total 14"""
-def get_producer_ids():
-    producerKeys = generate_producer_keys(file= 'prosumer_IDs.csv')
-    producerIDs = list(set(producerKeys) & set(read_asset_list('AssetListe.json')))
+def get_prosumer_ids():
+    prosumerKeys = generate_prosumer_keys(file= 'prosumer_IDs.csv')
+    prosumerIDs = list(set(prosumerKeys) & set(read_asset_list('AssetListe.json')))
 
-    return producerIDs
+    return prosumerIDs
 
 
 """ This function returns a list of all households that are just consumers
@@ -52,16 +52,16 @@ def get_producer_ids():
     in total 78"""
 def get_consumer_ids():
 
-    producerIDs = set(get_producer_ids())
+    prosumerIDs = set(get_prosumer_ids())
     assetIDs = set(read_asset_list('AssetListe.json'))
-    consumerIDs = list(assetIDs.difference(producerIDs))
+    consumerIDs = list(assetIDs.difference(prosumerIDs))
 
     return consumerIDs
 
 
 
 
-#Funktion die Producer-Koordinaten abfragt und diese den meterIDs zuordnet
+#Funktion die prosumer-Koordinaten abfragt und diese den meterIDs zuordnet
 """ This function reads the coordinates from all prosumerHouseholds
     from AssetListe.json
     
@@ -69,18 +69,18 @@ def get_consumer_ids():
     
     key: prosumer-Id
     value: [langitude, longitude]"""
-def get_producer_coordinates(file):
+def get_prosumer_coordinates(file):
     with open(file, 'r') as json_data:
         payload = json.load(json_data)
 
-        producer_coordinates = {}
+        prosumer_coordinates = {}
 
         for household in payload['data']:
-            for k in get_producer_ids():
+            for k in get_prosumer_ids():
                 if household['meterId'] == k:
-                    producer_coordinates[k] = list((float(household['location']['lat']),float(household['location']['lng'])))
+                    prosumer_coordinates[k] = list((float(household['location']['lat']),float(household['location']['lng'])))
 
-    return producer_coordinates
+    return prosumer_coordinates
 
 
 """ This function reads the coordinates from all consumerHouseholds
