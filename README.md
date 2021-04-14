@@ -1,7 +1,6 @@
 # data_preparation
-this repo contains all scripts that were needed to prepare the input data for the algorithms
-
-this repo will contain the scripts for:
+this repo contains all scripts that are need to calculate the power costs for all possible 
+household-pairs.
 
 getDataFromAssetListe.py
 - this script contain various functions to get data from AssetListe.json
