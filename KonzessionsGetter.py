@@ -90,7 +90,9 @@ def main():
     #input für  get_prosumerMeterID_to_Konzessionsabgabe
     prosumerMeterId_to_Konzessionsabgabe_Dict = get_prosumerMeterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode)
 
-    #input fuer prosumer_to_all_conzesciionskosten
+
+
+
     test = prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
                                                 meterID_to_Konzessionsabgabe_Dict)
 
