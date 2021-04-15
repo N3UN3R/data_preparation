@@ -25,8 +25,3 @@ lokalerZusammenhang.py
 
 # The following scripts work with data provided by ene't GmbH
 
-calculating distances in between households
-
-extracting needed data from ene't data
-
-calculating the cost dictionary
