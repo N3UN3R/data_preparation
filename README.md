@@ -29,3 +29,7 @@ lokalerZusammenhang.py
 enetGetterNew.py
 - contains one function that returns all households zipcodes matched to their meterIds
 - contains one function that returns all netinformations for a household matched to its meterId
+
+KonzessionsGetter.py
+- contains function that matches Konzessionsabgaben from all households from assetList.json to their meterIds
+- contains function that matches Konzessionsabgaben from all prosumer Households from assetListe.json to their meterIds
