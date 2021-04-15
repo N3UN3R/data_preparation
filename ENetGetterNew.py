@@ -74,15 +74,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-    #  for meterId, zip in matched_meterIDs_to_zipcode.items():
-    #     zipcode = zip
-    #    print(zipcode)
-
-    # for k,v in matched_meterIDs_to_zipcode.items():
-    #    #print(k,v)
-    #   print(v)
-
-    # for value in matched_meterIDs_to_zipcode.values():
-    #   print(value)
-
-    #  if value in matched_meterIDs_to_zipcode.values() ==
