@@ -24,7 +24,6 @@ def get_meterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode):
 
 
 
-
 """ This function returns the Konzessionsabgaben of every prosumer household from AssetListe.json
     
     This is used to calculate the costs from all prosumers to all households later on
