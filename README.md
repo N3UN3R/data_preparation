@@ -35,4 +35,7 @@ KonzessionsGetter.py
 - contains function that matches Konzessionsabgaben from all prosumer Households from assetListe.json to their meterIds
 - contains function that calculates the Konzessionsabgaben-Difference from all prosumer households to all households
 
+NetzentgeltGetter.py
+- contains function that matches Netzentgelte of all households to their meterIds
+- contains function that matches Netzentgelte of all prosumer households to their meterIds
 
