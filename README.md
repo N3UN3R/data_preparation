@@ -1,4 +1,4 @@
-# data_preparation
+# data_preparation (wip not all needed scripts added yet)
 
 this repo contains all scripts that are needed to calculate the power costs for all possible household-pairs.
 the resulting cost dictionary could be interpreted as an adjancecy matrix and is basis for all algorithms of
@@ -29,3 +29,7 @@ lokalerZusammenhang.py
 enetGetterNew.py
 - contains one function that returns all households zipcodes matched to their meterIds
 - contains one function that returns all netinformations for a household matched to its meterId
+
+KonzessionsGetter.py
+- contains function that matches Konzessionsabgaben from all households from assetList.json to their meterIds
+- contains function that matches Konzessionsabgaben from all prosumer Households from assetListe.json to their meterIds
