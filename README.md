@@ -1,5 +1,9 @@
 # data_preparation
 this repo contains all scripts that are need to calculate the power costs for all possible 
+It is still work in progress!
+Scripts will be added in the next days
+
+
 household-pairs.
 
 getDataFromAssetListe.py
