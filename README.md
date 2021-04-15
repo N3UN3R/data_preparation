@@ -33,3 +33,6 @@ enetGetterNew.py
 KonzessionsGetter.py
 - contains function that matches Konzessionsabgaben from all households from assetList.json to their meterIds
 - contains function that matches Konzessionsabgaben from all prosumer Households from assetListe.json to their meterIds
+- contains function that calculates the Konzessionsabgaben-Difference from all prosumer households to all households
+
+
