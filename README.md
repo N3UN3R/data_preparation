@@ -25,3 +25,6 @@ lokalerZusammenhang.py
 
 # The following scripts work with data provided by ene't GmbH
 
+enetGetterNew.py
+- contains one function that returns all households zipcodes matched to their meterIds
+- contains one function that returns all netinformations for a household matched to its meterId
