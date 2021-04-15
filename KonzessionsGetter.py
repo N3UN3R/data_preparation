@@ -52,9 +52,23 @@ def get_prosumerMeterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode):
     to all other households
     
     returns a dictionary with the households meterIds as key and the konzessionskosten difference as value entry
+    
+    returns: dictionary     key: (prosumerId, householdId)      value: netCostDifference
+    
+    length: 1288 = the dictionary also contains pairs of households with themselves. They have to be removed later
     """
-def prosumers_to_all_households_konzessionscost():
+def prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,meterID_to_Konzessionsabgabe_Dict):
 
+    konzessionCost_prosumers_to_all_households = {}
+
+    for prosumerId, konzessionCost in prosumerMeterId_to_Konzessionsabgabe_Dict.items():
+        for meterId, konzessionCost2 in meterID_to_Konzessionsabgabe_Dict.items():
+            matchedHouseholdIdsKonzession = tuple([prosumerId, meterId])
+            #konzessionscost have to get paid where the electricity is consumed. so the difference has to be calculated in this way
+            konzessionCostDifference = float(konzessionCost) - (konzessionCost2)
+            konzessionCost_prosumers_to_all_households[matchedHouseholdIdsKonzession] = konzessionCostDifference
+
+    return konzessionCost_prosumers_to_all_households
 
 
 
@@ -63,22 +77,25 @@ def main():
     # input fuer die funktion get meter id to zipcode
     matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict('AssetListe.json')
 
+    file = 'AssetListe.json'
+
+
+
     # imput fuer die funktion get EnetData
     matched_MeterIDS_to_EnetData = get_ENetData('NetzpreiseCSV.csv', matched_meterIDs_to_zipcode)
 
     #input für get_meterID_to_Konzessionsabgabe
-    matched_MeterIDS_to_Konzessionsabgabe = get_meterID_to_Konzessionsabgabe(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
+    meterID_to_Konzessionsabgabe_Dict = get_meterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode)
 
     #input für  get_prosumerMeterID_to_Konzessionsabgabe
-    prosumerIds_matched_to_konzessionscost = get_prosumerMeterID_to_Konzessionsabgabe(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
+    prosumerMeterId_to_Konzessionsabgabe_Dict = get_prosumerMeterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode)
 
-    #print(prosumerIds_matched_to_konzessionscost.__len__())
+    #input fuer prosumer_to_all_conzesciionskosten
+    test = prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
+                                                meterID_to_Konzessionsabgabe_Dict)
 
-    print(matched_MeterIDS_to_Konzessionsabgabe)
 
-
-    #print(matched_MeterIDS_to_Konzessionsabgabe)
-    #print(matched_MeterIDS_to_Konzessionsabgabe.__len__())
+    print(len(test))
 
 
 
@@ -86,19 +103,3 @@ if __name__ == '__main__':
     main()
 
 
-
-#file = 'AssetListe.json'
-#prosumerMeterId_to_Konzessionsabgabe_Dict = get_prosumerMeterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode)
-
-
-#def calculate_KonzessionsabgabenDifferenz_prosumer_to_all_households(file, meterID_to_Konzessionsabgabe_Dict,prosumerMeterId_to_Konzessionsabgabe_Dict):
-
- #   konzessionCost_difference_dict = {}
-
-  #  for meterId, KonzessionCost in get_meterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode).items():
-   #     for meterId2Konz, KonzessionCost2 in get_meterID_to_Konzessionsabgabe(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode).items():
-      #      matchedHouseholdIdsKonzession = tuple([meterIdKonz,meterId2Konz])
-    #        konzessionCostDifference = float(KonzessionCost)-(KonzessionCost2)
-     #       konzessionCost_difference_dict[matchedHouseholdIdsKonzession] = konzessionCostDifference
-
-    #return konzessionCost_difference_dict
