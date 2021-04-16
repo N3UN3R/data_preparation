@@ -1,4 +1,4 @@
-# data_preparation (wip not all needed scripts added yet)
+# data_preparation
 
 this repo contains all scripts that are needed to calculate the power costs for all possible household-pairs.
 the resulting cost dictionary could be interpreted as an adjancecy matrix and is basis for all algorithms of
