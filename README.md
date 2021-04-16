@@ -11,6 +11,8 @@ Following files are needed to run these scripts:
 - prosumer_IDs.csv
 
 
+# Calculating the trading costs for all possible household pairs
+
 
 # The following scripts get needed information from AssetListe.json
 
