@@ -84,7 +84,7 @@ def main():
 
     netCost_difference_dict = calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,meterID_to_Netzentgelte_Dict)
 
-    print(len(netCost_difference_dict))
+    print((netCost_difference_dict))
 
 
 
