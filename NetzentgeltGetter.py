@@ -48,6 +48,26 @@ def get_prosumerMeterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_mete
     return prosumerMeterId_to_Netzentgelte_Dict
 
 
+    """ function that calculates the difference of the netCosts from all prosumer households to all
+        other households
+        
+        returns: dictionary         key= (prosumerId, householdId)      value = netCostDifference
+        
+        length: 1288
+        """
+def calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,meterID_to_Netzentgelte_Dict):
+    pass
+    netCost_difference_dict = {}
+
+    for prosumerId, netCost in prosumerMeterId_to_Netzentgelte_Dict.items():
+        for meterId, netCost2 in meterID_to_Netzentgelte_Dict.items():
+            matchedHouseholdIds = tuple([prosumerId, meterId])
+            netCostDifference = float(netCost) - float(netCost2)
+            netCost_difference_dict[matchedHouseholdIds] = netCostDifference
+
+    return netCost_difference_dict
+
+
 def main():
 
     # input fuer die funktion get meter id to zipcode
@@ -57,11 +77,14 @@ def main():
     matched_MeterIDS_to_EnetData = get_ENetData('NetzpreiseCSV.csv', matched_meterIDs_to_zipcode)
 
     #input für get_meterID_to_Konzessionsabgabe
-    allHouseholdsToNetzgelt = get_meterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
+    meterID_to_Netzentgelte_Dict = get_meterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
 
     #input fuer get_prosumerMeterID_to_Netzentgelt
-    prosumerToNetzgelt = get_prosumerMeterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
+    prosumerMeterId_to_Netzentgelte_Dict = get_prosumerMeterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
 
+    netCost_difference_dict = calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,meterID_to_Netzentgelte_Dict)
+
+    print(len(netCost_difference_dict))
 
 
 
