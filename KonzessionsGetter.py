@@ -11,7 +11,7 @@ from getDataFromAssetListe import get_prosumer_ids
     
     Length of the dictionary is 92
     """
-def get_meterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode):
+def get_meterID_to_Konzessionsabgabe(matched_meterIDs_to_zipcode):
 
     #dictionary for konzessionsabgaben matched to households meterids
     meterID_to_Konzessionsabgabe_Dict = {}
@@ -31,7 +31,7 @@ def get_meterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode):
     return: dictionary prosumerIds matched to Konzessionsabgaben
     lenght: 14
     """
-def get_prosumerMeterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode):
+def get_prosumerMeterID_to_Konzessionsabgabe(matched_meterIDs_to_zipcode):
 
     #dictionary for all prosumerIds to their Konzessionsabgaben
     prosumerMeterId_to_Konzessionsabgabe_Dict = {}
@@ -75,21 +75,16 @@ def prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsab
 def main():
 
     # input fuer die funktion get meter id to zipcode
-    matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict('AssetListe.json')
-
-    file = 'AssetListe.json'
-
-
+    matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict()
 
     # imput fuer die funktion get EnetData
     matched_MeterIDS_to_EnetData = get_ENetData('NetzpreiseCSV.csv', matched_meterIDs_to_zipcode)
 
     #input für get_meterID_to_Konzessionsabgabe
-    meterID_to_Konzessionsabgabe_Dict = get_meterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode)
+    meterID_to_Konzessionsabgabe_Dict = get_meterID_to_Konzessionsabgabe(matched_meterIDs_to_zipcode)
 
     #input für  get_prosumerMeterID_to_Konzessionsabgabe
-    prosumerMeterId_to_Konzessionsabgabe_Dict = get_prosumerMeterID_to_Konzessionsabgabe(file,matched_meterIDs_to_zipcode)
-
+    prosumerMeterId_to_Konzessionsabgabe_Dict = get_prosumerMeterID_to_Konzessionsabgabe(matched_meterIDs_to_zipcode)
 
 
 

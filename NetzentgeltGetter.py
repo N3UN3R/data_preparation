@@ -71,7 +71,7 @@ def calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to
 def main():
 
     # input fuer die funktion get meter id to zipcode
-    matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict('AssetListe.json')
+    matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict()
 
     # imput fuer die funktion get EnetData
     matched_MeterIDS_to_EnetData = get_ENetData('NetzpreiseCSV.csv', matched_meterIDs_to_zipcode)
@@ -83,8 +83,6 @@ def main():
     prosumerMeterId_to_Netzentgelte_Dict = get_prosumerMeterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_meterIDs_to_zipcode)
 
     netCost_difference_dict = calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,meterID_to_Netzentgelte_Dict)
-
-    print((netCost_difference_dict))
 
 
 

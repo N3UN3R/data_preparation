@@ -9,8 +9,8 @@ import csv
     Inputfile is 'assetListe.json'
     the length of the output dictionary is 92
    """
-def get_meter_id_to_zipcode_dict(file):
-    with open(file, 'r') as json_data:
+def get_meter_id_to_zipcode_dict():
+    with open('AssetListe.json', 'r') as json_data:
         payload = json.load(json_data)
         meter_ids_to_zipcodes = {}
         for household in payload['data']:
@@ -58,17 +58,12 @@ def get_ENetData(file, matched_meterIDs_to_zipcode):
 def main():
 
     #input fuer die funktion get meter id to zipcode
-    matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict('AssetListe.json')
+    matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict()
 
     #imput fuer die funktion get EnetData
     matched_MeterIDS_to_EnetData = get_ENetData('NetzpreiseCSV.csv',matched_meterIDs_to_zipcode)
 
-    #print(matched_MeterIDS_to_EnetData)
-    #print(matched_MeterIDS_to_EnetData)
-
-   # print(matched_meterIDs_to_zipcode.__len__())
-   # print(matched_MeterIDS_to_EnetData.__len__())
-   # print(matched_MeterIDS_to_EnetData)
+    print(matched_meterIDs_to_zipcode)
 
 
 if __name__ == '__main__':
