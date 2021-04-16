@@ -14,6 +14,8 @@ Following files are needed to run these scripts:
 # Calculating the trading costs for all possible household pairs
 
 costCalculator.py
+- contains a function that calculates the trading costs
+- all other scripts in this repo are used for this calculation
 
 
 # The following scripts get needed information from AssetListe.json
