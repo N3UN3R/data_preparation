@@ -11,6 +11,10 @@ Following files are needed to run these scripts:
 - prosumer_IDs.csv
 
 
+# Calculating the trading costs for all possible household pairs
+
+costCalculator.py
+
 
 # The following scripts get needed information from AssetListe.json
 
@@ -33,3 +37,10 @@ enetGetterNew.py
 KonzessionsGetter.py
 - contains function that matches Konzessionsabgaben from all households from assetList.json to their meterIds
 - contains function that matches Konzessionsabgaben from all prosumer Households from assetListe.json to their meterIds
+- contains function that calculates the Konzessionsabgaben-Difference from all prosumer households to all households
+
+NetzentgeltGetter.py
+- contains function that matches Netzentgelte of all households to their meterIds
+- contains function that matches Netzentgelte of all prosumer households to their meterIds
+- contains function that matches all Netzentgelt differences from all prosumers to all households
+
