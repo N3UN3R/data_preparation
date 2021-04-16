@@ -38,4 +38,5 @@ KonzessionsGetter.py
 NetzentgeltGetter.py
 - contains function that matches Netzentgelte of all households to their meterIds
 - contains function that matches Netzentgelte of all prosumer households to their meterIds
+- contains function that matches all Netzentgelt differences from all prosumers to all households
 
