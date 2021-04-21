@@ -39,6 +39,38 @@ def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences)
     return total_trading_costs_dict
 
 
+
+
+def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences):
+    pass
+    total_trading_costs_dict = {}
+
+    netCostDifferences_discount = netCostDifferences
+    konzessionCostDifferences_discount = konzessionsCostDifferences
+    localTradingDiscount = calculate_price_reduction_of_local_trading()
+
+    # constant values
+    # EEG_Umlage mit 6,81 ct/kWh
+    EEG_Umlage = float(6.81)
+    # durchschnittlicher Strompreis in Deutschland
+    average_electricity_price = float(30.0)
+
+    for i in localTradingDiscount.keys():
+        # entspricht der Einsparungsfunktion im schriftlichen Teil
+        tradingDiscount = float(netCostDifferences_discount[i]) + float(konzessionCostDifferences_discount[i]) + float(
+            localTradingDiscount[i])
+        # berechnet die Stromkosten, welche fuer die Optimierung später benötigt werden
+        total_trading_costs_dict[i] = average_electricity_price - EEG_Umlage - tradingDiscount
+
+    with open(('tradingCost_prosumers_to_all_households.json'), 'w') as file:
+        json.dump(str(total_trading_costs_dict),file)
+
+    return total_trading_costs_dict
+
+
+
+
+
 def main():
 
     #input for functions from EnetGetterNew
@@ -61,7 +93,7 @@ def main():
                                                meterID_to_Konzessionsabgabe_Dict)
 
 
-    print(len(calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences)))
+  #  print(len(calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences)))
 
 
 if __name__ == '__main__':
