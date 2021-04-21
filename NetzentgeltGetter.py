@@ -53,17 +53,19 @@ def get_prosumerMeterID_to_Netzentgelt(matched_MeterIDS_to_EnetData,matched_mete
         
         returns: dictionary         key= (prosumerId, householdId)      value = netCostDifference
         
-        length: 1288
+        length of nested dicts: 92
+        
         """
-def calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,meterID_to_Netzentgelte_Dict):
-    pass
+def calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,
+                                                              meterID_to_Netzentgelte_Dict):
+
     netCost_difference_dict = {}
 
     for prosumerId, netCost in prosumerMeterId_to_Netzentgelte_Dict.items():
+        netCost_difference_dict[prosumerId] = {}
         for meterId, netCost2 in meterID_to_Netzentgelte_Dict.items():
-            matchedHouseholdIds = tuple([prosumerId, meterId])
             netCostDifference = float(netCost) - float(netCost2)
-            netCost_difference_dict[matchedHouseholdIds] = netCostDifference
+            netCost_difference_dict[prosumerId][meterId] = netCostDifference
 
     return netCost_difference_dict
 
@@ -84,7 +86,6 @@ def main():
 
     netCost_difference_dict = calculate_prosmumer_to_all_households_netCosts_difference(prosumerMeterId_to_Netzentgelte_Dict,meterID_to_Netzentgelte_Dict)
 
-    print(netCost_difference_dict)
 
 
 if __name__ == '__main__':

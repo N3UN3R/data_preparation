@@ -43,3 +43,4 @@ def calculate_price_reduction_of_local_trading():
 
     return localNeighbourDiscount
 
+
