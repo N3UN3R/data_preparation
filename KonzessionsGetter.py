@@ -59,14 +59,14 @@ def get_prosumerMeterID_to_Konzessionsabgabe(file, matched_meterIDs_to_zipcode):
 
 def prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
                                                 meterID_to_Konzessionsabgabe_Dict):
+
     konzessionCost_prosumers_to_all_households = {}
 
     for prosumerId, konzessionCost in prosumerMeterId_to_Konzessionsabgabe_Dict.items():
+        konzessionCost_prosumers_to_all_households[prosumerId] = {}
         for meterId, konzessionCost2 in meterID_to_Konzessionsabgabe_Dict.items():
-            matchedHouseholdIdsKonzession = tuple([prosumerId, meterId])
-            # konzessionscost have to get paid where the electricity is consumed. so the difference has to be calculated in this way
             konzessionCostDifference = float(konzessionCost) - (konzessionCost2)
-            konzessionCost_prosumers_to_all_households[matchedHouseholdIdsKonzession] = konzessionCostDifference
+            konzessionCost_prosumers_to_all_households[prosumerId][meterId] = konzessionCostDifference
 
     return konzessionCost_prosumers_to_all_households
 
@@ -90,8 +90,6 @@ def main():
     test = prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
                                                        meterID_to_Konzessionsabgabe_Dict)
 
-    #print(len(test))
-  # print(len(prosumerMeterId_to_Konzessionsabgabe_Dict))
 
 
 if __name__ == '__main__':
