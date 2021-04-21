@@ -127,4 +127,3 @@ def get_allHouseholds_coordinates(file):
 
     return allHouseholds_coordinates
 
-print(len(get_allHouseholds_coordinates('AssetListe.json')))
