@@ -1,4 +1,4 @@
-# data_preparation (wip not all needed scripts added yet)
+# data_preparation
 
 this repo contains all scripts that are needed to calculate the power costs for all possible household-pairs.
 the resulting cost dictionary could be interpreted as an adjancecy matrix and is basis for all algorithms of
@@ -14,6 +14,8 @@ Following files are needed to run these scripts:
 # Calculating the trading costs for all possible household pairs
 
 costCalculator.py
+- contains a function that calculates the trading costs
+- all other scripts in this repo are used for this calculation
 
 
 # The following scripts get needed information from AssetListe.json
