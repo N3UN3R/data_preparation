@@ -15,7 +15,6 @@ def read_asset_list(file):
 
     return asset_ids
 
-print(read_asset_list('AssetListe.json'))
 
 """ This function reads in a file called prosumer_Ids.csv
     It contains a list of all meterIds that are prosumer households 
