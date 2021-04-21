@@ -13,8 +13,8 @@ import json
 """
 
 def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences):
-    pass
-    total_trading_costs_dict = {}
+
+    total_trading_costs_dict_nested = {}
 
     netCostDifferences_discount = netCostDifferences
     konzessionCostDifferences_discount = konzessionsCostDifferences
@@ -26,46 +26,28 @@ def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences)
     # durchschnittlicher Strompreis in Deutschland
     average_electricity_price = float(30.0)
 
-    for i in localTradingDiscount.keys():
-        # entspricht der Einsparungsfunktion im schriftlichen Teil
-        tradingDiscount = float(netCostDifferences_discount[i]) + float(konzessionCostDifferences_discount[i]) + float(
-            localTradingDiscount[i])
-        # berechnet die Stromkosten, welche fuer die Optimierung später benötigt werden
-        total_trading_costs_dict[i] = average_electricity_price - EEG_Umlage - tradingDiscount
+    for prosumerId,households in calculate_price_reduction_of_local_trading().items():
+        total_trading_costs_dict_nested[prosumerId] = {}
 
-    with open(('tradingCost_prosumers_to_all_households.json'), 'w') as file:
-        json.dump(str(total_trading_costs_dict),file)
+        for meterId, localDiscountValue in households.items():
 
-    return total_trading_costs_dict
+            localDiscount = localDiscountValue
 
+            netCostDiscount = netCostDifferences_discount[prosumerId][meterId]
+
+            konzessionsCostDiscount = konzessionCostDifferences_discount[prosumerId][meterId]
 
 
+            tradingDiscount = float(localDiscount)+float(netCostDiscount)+float(konzessionsCostDiscount)
 
-def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences):
-    pass
-    total_trading_costs_dict = {}
+            total_trading_costs_dict_nested[prosumerId][meterId] = average_electricity_price - EEG_Umlage - tradingDiscount
 
-    netCostDifferences_discount = netCostDifferences
-    konzessionCostDifferences_discount = konzessionsCostDifferences
-    localTradingDiscount = calculate_price_reduction_of_local_trading()
+    with open(('tradingCost_prosumers_to_all_households_nested.json'), 'w') as file:
+        json.dump(str(total_trading_costs_dict_nested),file)
 
-    # constant values
-    # EEG_Umlage mit 6,81 ct/kWh
-    EEG_Umlage = float(6.81)
-    # durchschnittlicher Strompreis in Deutschland
-    average_electricity_price = float(30.0)
+    return total_trading_costs_dict_nested
 
-    for i in localTradingDiscount.keys():
-        # entspricht der Einsparungsfunktion im schriftlichen Teil
-        tradingDiscount = float(netCostDifferences_discount[i]) + float(konzessionCostDifferences_discount[i]) + float(
-            localTradingDiscount[i])
-        # berechnet die Stromkosten, welche fuer die Optimierung später benötigt werden
-        total_trading_costs_dict[i] = average_electricity_price - EEG_Umlage - tradingDiscount
 
-    with open(('tradingCost_prosumers_to_all_households.json'), 'w') as file:
-        json.dump(str(total_trading_costs_dict),file)
-
-    return total_trading_costs_dict
 
 
 
@@ -93,7 +75,10 @@ def main():
                                                meterID_to_Konzessionsabgabe_Dict)
 
 
-  #  print(len(calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences)))
+    #for k,v in calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences).items():
+     #   print(k)
+      #  print(v)
+       # print(len(v))
 
 
 if __name__ == '__main__':

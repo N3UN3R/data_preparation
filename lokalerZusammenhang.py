@@ -43,3 +43,15 @@ def calculate_price_reduction_of_local_trading():
 
     return localNeighbourDiscount
 
+
+#for k,v in calculate_price_reduction_of_local_trading().items():
+ #   print(k)
+  #  print(v)
+    #print(len(v))
+    #print(type(v))
+#    for l,m in v.items():
+ #       print(l)
+  #      print(m)
+
+#print(calculate_price_reduction_of_local_trading()['f8fd972060b848438d927d59919bdc49']['a1b64ab07c3440bfb182f8bc815172bb'])
+
