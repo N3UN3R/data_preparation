@@ -61,8 +61,6 @@ def get_consumer_ids():
     return consumerIDs
 
 
-
-
 #Funktion die prosumer-Koordinaten abfragt und diese den meterIDs zuordnet
 """ This function reads the coordinates from all prosumerHouseholds
     from AssetListe.json
@@ -107,6 +105,7 @@ def get_consumer_coordinates(file):
 
     return consumer_coordinates
 
+
 """ This function reads the coordinates from all Households
     from AssetListe.json
 
@@ -123,7 +122,9 @@ def get_allHouseholds_coordinates(file):
         allHouseholds_coordinates = {}
 
         for household in payload['data']:
-            allHouseholds_coordinates[household['meterId']] = list((float(household['location']['lat']),float(household['location']['lng'])))
+            if household['meterId'] != 'NO_METER_AVAILABLE':
+                allHouseholds_coordinates[household['meterId']] = list((float(household['location']['lat']),float(household['location']['lng'])))
 
     return allHouseholds_coordinates
 
+print(len(get_allHouseholds_coordinates('AssetListe.json')))
