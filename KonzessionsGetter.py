@@ -91,6 +91,5 @@ def main():
                                                        meterID_to_Konzessionsabgabe_Dict)
 
 
-
 if __name__ == '__main__':
     main()
