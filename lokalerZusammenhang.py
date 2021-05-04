@@ -25,6 +25,7 @@ def calculate_distance_from_prosumers_to_allHouseholds():
     return distance_from_prosumers_to_allHouseholds
 
 
+
 """ This function sets the possible price reduction from local trading.
     As price could be reduced for a distance lower than 4.5km it checks
     whether the distance in between to households is lower than this limit"""
@@ -42,16 +43,4 @@ def calculate_price_reduction_of_local_trading():
                 localNeighbourDiscount[prosumerId][consumerId] = float(0)
 
     return localNeighbourDiscount
-
-
-#for k,v in calculate_price_reduction_of_local_trading().items():
- #   print(k)
-  #  print(v)
-    #print(len(v))
-    #print(type(v))
-#    for l,m in v.items():
- #       print(l)
-  #      print(m)
-
-#print(calculate_price_reduction_of_local_trading()['f8fd972060b848438d927d59919bdc49']['a1b64ab07c3440bfb182f8bc815172bb'])
 

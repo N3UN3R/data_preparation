@@ -12,7 +12,7 @@ import json
     Netzentgelter.py            - differnece of Netzentgelte
 """
 
-def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences):
+def calculate_total_trading_costs_nested(netCostDifferences,konzessionsCostDifferences):
 
     total_trading_costs_dict_nested = {}
 
@@ -49,10 +49,6 @@ def calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences)
 
 
 
-
-
-
-
 def main():
 
     #input for functions from EnetGetterNew
@@ -74,11 +70,6 @@ def main():
     konzessionsCostDifferences = prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
                                                meterID_to_Konzessionsabgabe_Dict)
 
-
-    #for k,v in calculate_total_trading_costs(netCostDifferences,konzessionsCostDifferences).items():
-     #   print(k)
-      #  print(v)
-       # print(len(v))
 
 
 if __name__ == '__main__':

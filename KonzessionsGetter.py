@@ -71,6 +71,7 @@ def prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsab
     return konzessionCost_prosumers_to_all_households
 
 
+
 def main():
     # input fuer die funktion get meter id to zipcode
     matched_meterIDs_to_zipcode = get_meter_id_to_zipcode_dict('AssetListe.json')
@@ -89,7 +90,6 @@ def main():
 
     test = prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
                                                        meterID_to_Konzessionsabgabe_Dict)
-
 
 
 if __name__ == '__main__':
