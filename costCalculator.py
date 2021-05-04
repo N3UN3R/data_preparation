@@ -43,7 +43,8 @@ def calculate_total_trading_costs_nested(netCostDifferences,konzessionsCostDiffe
             total_trading_costs_dict_nested[prosumerId][meterId] = average_electricity_price - EEG_Umlage - tradingDiscount
 
     with open(('tradingCost_prosumers_to_all_households_nested.json'), 'w') as file:
-        json.dump(str(total_trading_costs_dict_nested),file)
+        # json.dump(str(total_trading_costs_dict_nested),file)
+        json.dump(total_trading_costs_dict_nested, file)
 
     return total_trading_costs_dict_nested
 
@@ -70,7 +71,7 @@ def main():
     konzessionsCostDifferences = prosumers_to_all_households_konzessionscost(prosumerMeterId_to_Konzessionsabgabe_Dict,
                                                meterID_to_Konzessionsabgabe_Dict)
 
-
+    print(calculate_total_trading_costs_nested(netCostDifferences,konzessionsCostDifferences))
 
 if __name__ == '__main__':
     main()
