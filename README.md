@@ -18,6 +18,10 @@ costCalculator.py
 - all other scripts in this repo are used for this calculation
 
 
+costDict_tuples.py
+- script that reads in the returned file from costCalculator.py and changes the dictionary structure to a dictionary where keys are tuples. This dictionary is needed by modified kruskal algorithm
+
+
 # The following scripts get needed information from AssetListe.json
 
 getDataFromAssetListe.py
