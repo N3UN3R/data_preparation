@@ -42,7 +42,7 @@ def get_ENetData(file, matched_meterIDs_to_zipcode):
         households_with_Enet_Data = {}
 
         # comparing zipcodes from meter_id_list and ENet Data
-        test = []
+        data = []
         for row in rows:
 
             for meterId, zip in matched_meterIDs_to_zipcode.items():
@@ -50,7 +50,7 @@ def get_ENetData(file, matched_meterIDs_to_zipcode):
                 test.append(zipcode)
 
                 if float(zipcode) == float(row['PLZ']):
-                    test.append(zipcode)
+                    data.append(zipcode)
                     households_with_Enet_Data[meterId] = row
 
     return households_with_Enet_Data
